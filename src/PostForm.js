@@ -41,12 +41,11 @@ export default function PostForm(props) {
     };
 
     if (action === 'Update') {
-      requestOptions.method = 'PATCH';
+      requestOptions.method = 'PUT';
     }
     if (action === 'Create') {
       requestOptions.method = 'POST';
     }
-    console.log(requestOptions);
     fetch(url, requestOptions)
       .then(
         response => {
@@ -57,6 +56,9 @@ export default function PostForm(props) {
             alert("Create the post successfully");
             props.history.goBack();
           }
+        },
+        (error) => {
+            console.log(error);
         }
       );
   }
