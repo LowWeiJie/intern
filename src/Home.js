@@ -74,8 +74,11 @@ export default function Home(props) {
             )
             .then(response => response.json())
             .then(
-                response => {
+                (response) => {
                     setPosts(response.data);
+                },
+                (error) => {
+                    console.log(error);
                 }
             );
     }
@@ -89,7 +92,7 @@ export default function Home(props) {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', "Authorization": 'Bearer ' + token }
         };
-        fetch(url, requestOptions)
+        fetch(url, requestOptions) //AJAX (jQuery - front end call api)
             .then(
                 response => {
                     if (response.status !== 204) {
@@ -99,6 +102,9 @@ export default function Home(props) {
                         alert("Delete the post successfully");
                         window.location.reload(false);
                     }
+                },
+                (error) => {
+                    console.log(error);
                 }
             );
     }
@@ -127,6 +133,9 @@ export default function Home(props) {
             .then(
                 response => {
                     setPosts(response.data);
+                },
+                (error) => {
+                    console.log(error);
                 }
             );
     }
